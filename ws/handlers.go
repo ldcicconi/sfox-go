@@ -2,14 +2,12 @@ package ws
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"github.com/ldcicconi/sfox-go/models"
 	"github.com/sirupsen/logrus"
 )
 
 func (c *Client) handleOrderbookMsg(feed string, payload json.RawMessage) {
-	fmt.Println(feed)
 	if !c.subbedToFeed(feed) {
 		c.log.WithField("feed", feed).Warning("orderbook received for feed without active subscribers")
 		return
