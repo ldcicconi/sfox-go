@@ -8,6 +8,13 @@ type Orderbook struct {
 	Pair            string `json:"pair"`
 }
 
+func (ob *Orderbook) Mid() float64 {
+	if len(ob.Bids) == 0 || len(ob.Asks) == 0 {
+		return 0.0
+	}
+	return (ob.Bids[0].Price() + ob.Asks[0].Price()) / 2.0
+}
+
 type Book struct {
 	Bids []Quote `json:"bids"` // sorted best to worst, always
 	Asks []Quote `json:"asks"` // <- this too
